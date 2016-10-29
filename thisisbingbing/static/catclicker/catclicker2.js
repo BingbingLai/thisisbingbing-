@@ -5,6 +5,12 @@ const models = {
 			url: 'http://www.littlethings.com/wp-content/uploads/2014/07/post-10220-Smiling-Grumpy-Cat-o0aJ.jpeg',
 			count: 0,
 			active:1
+		},
+		234: {
+			id:234,
+			url: "https://i.ytimg.com/vi/APoCpZOrI4w/hqdefault.jpg",
+			count: 0,
+			active: 1
 		}
 	}, 
 
@@ -48,6 +54,8 @@ const views = {
 	init: function(data) {
 		this._data = data;
 		this.render();
+		this.register_events();
+
 	},
 
 	render: function() {
@@ -56,20 +64,23 @@ const views = {
 	    this._data.forEach( (d) => {
 	        _outterCatElem.append(this._renderCat(d));
 		});
-		this.register_events();
 	},
     // need to figure out how to register the event and the re-render.
     // reference: https://github.com/udacity/ud989-pizzamvo/blob/master/js/app.js
 	register_events: function() {
-		const _innerCatElems = $('.cat');
+		const _innerCatElems = $('#cat');
 		if (_innerCatElems.length === 0) {
 			return;
 		}
-	    _innerCatElems.on('click', function(e) {
-				const catID = this.dataset.id;
+		const self = this;
+	    _innerCatElems.on('click', '.cat-controller', function(e) {
+	    	debugger;
+	    	    const catID = $(this).parents('.cat').data().id;
+
+				// const catID = this.dataset.id;
 				models.increment_count(catID);
+				self.render();
 		});
-		//this.render();
 	},
 
 	_renderCat: function(data) {
