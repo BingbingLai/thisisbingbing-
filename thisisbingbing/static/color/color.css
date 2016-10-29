@@ -1,0 +1,15 @@
+button {
+	font-family: cursive;
+	font-size: 32px;
+	width: 150px;
+
+	padding: 10px 25px;
+	background-color: red;
+	border-color: brown;
+	text-align: center;
+}
+
+
+.center {
+	text-align: center;
+}
